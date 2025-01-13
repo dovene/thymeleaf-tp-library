@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Livres</title>
+    <style>
+        table, th, td {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des livres</h1>
+
+<a th:href="@{/books/add}">Ajouter un livre</a>
+<br/><br/>
+<div>
+    <form th:action="@{/books}" method="get">
+        <input type="text" name="search" th:value="${search}" placeholder="Rechercher un livre..." />
+        <button type="submit">Rechercher</button>
+    </form>
+</div>
+<br/>
+<table >
+    <thead>
+    <tr>
+        <th>ISBN</th>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Genre</th>
+        <th>Etat</th>
+        <th>Exemplaires disponibles</th>
+        <th>Exemplaires total</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.isbn}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.type}"></td>
+        <td th:text="${book.status}"></td>
+        <td th:text="${book.availableCopies}"></td>
+        <td th:text="${book.totalCopies}"></td>
+        <td th:text="${book.replacementPrice}"></td>
+        <td>
+            <a th:href="@{/books/edit/{isbn}(isbn=${book.isbn})}">Modifier</a> |
+            <a th:href="@{/books/delete/{isbn}(isbn=${book.isbn})}">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/}">Retour à l'accueil</a></p>
+</body>
+</html>

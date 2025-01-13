@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Accueil</title>
+</head>
+
+<body>
+    <nav>
+        <a th:href="@{/books}">Livres</a> |
+        <a th:href="@{/members}">Membres</a> |
+        <a th:href="@{/loans}">Emprunts</a>
+    </nav>
+    <h1>Tableau de bord</h1>
+    <p>Nombre de membres : <span th:text="${memberCount}"></span></p>
+    <p>Nombre de livres : <span th:text="${totalBooksCount}"></span></p>
+    <p>Nombre de livres empruntés : <span th:text="${booksInProgressCount}"></span></p>
+    <p>Nombre de livre en retard : <span th:text="${booksLateCount}"></span></p>
+
+</body>
+
+</html>

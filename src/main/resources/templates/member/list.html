@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des membres</title>
+    <style>
+        table, th, td {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des membres</h1>
+
+<a th:href="@{/members/add}">Ajouter un membre</a>
+<br/><br/>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Date d'inscription</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.memberId}"></td>
+        <td th:text="${member.firstName}"></td>
+        <td th:text="${member.lastName}"></td>
+        <td th:text="${member.email}"></td>
+        <td th:text="${member.registrationDate}"></td>
+        <td th:text="${member.status}"></td>
+        <td>
+            <a th:href="@{/members/edit/{id}(id=${member.memberId})}">Modifier</a> |
+            <a th:href="@{/members/delete/{id}(id=${member.memberId})}">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/}">Retour à l'accueil</a></p>
+</body>
+</html>

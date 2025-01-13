@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Les emprunts</title>
+    <style>
+        table, th, td {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Les emprunts</h1>
+
+<a th:href="@{/loans/add}">Ajouter un emprunt</a>
+<br/><br/>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID du Membre</th>
+        <th>ISBN du livre</th>
+        <th>Date d'emprunt</th>
+        <th>Date de retour</th>
+        <th>Etat à l'emprunt</th>
+        <th>Etat au retour</th>
+        <th>Statut</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="loan : ${loans}">
+        <td th:text="${loan.memberId}"></td>
+        <td th:text="${loan.isbn}"></td>
+        <td th:text="${loan.loanDate}"></td>
+        <td th:text="${loan.dueDate}"></td>
+        <td th:text="${loan.bookConditionAtLoan}"></td>
+        <td th:text="${loan.bookConditionAtReturn}"></td>
+        <td th:text="${loan.status}"></td>
+        <td>
+            <a th:href="@{/loans/edit/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Edit</a> |
+            <a th:href="@{/loans/delete/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/}">Retour à l'accueil</a></p>
+</body>
+</html>

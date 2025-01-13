@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${loan.memberId} == null ? 'Ajouter un emprunt' : 'Modifier un emprunt'"></title>
+</head>
+<body>
+
+    <h1 th:text="${loan.memberId} == null ? 'Ajout d\'un emprunt' : 'Modification d\'un emprunt'">
+        Formulaire d'emprunt
+    </h1>
+<form th:action="@{/loans/save}" th:object="${loan}" method="post">
+    
+    <label>ID du membre:</label>
+    <select th:field="*{memberId}">
+        <option th:each="item : ${members}"
+        th:value="${item.memberId}"
+        th:text="${item.memberId + ' - ' + item.firstName + ' '+item.lastName}">
+        </option>
+    </select>
+    <br/> <br/>
+
+    <label>ISBN:</label>
+    <select th:field="*{isbn}">
+        <option th:each="item : ${books}"
+        th:value="${item.isbn}"
+        th:text="${item.isbn + ' - ' + item.title}">
+        </option>
+    </select>
+    <br/> <br/>
+
+    <label>Date d'emprunt:</label>
+    <input type="date" name="loanDateStr" th:value="${loan.loanDate}" /><br/>
+    <br/>
+
+    <label>Date de retour:</label>
+    <input type="date" name="dueDateStr" th:value="${loan.dueDate}" /><br/>
+    <br/>
+
+    <label>Etat à l'emprunt:</label>
+    <select th:field="*{bookConditionAtLoan}">
+        <option th:each="item : ${statuses}"
+        th:value="${item}"
+        th:text="${item}">
+        </option>
+    </select>
+    <br/> <br/>
+
+    <label>Etat au retour:</label>
+    <select th:field="*{bookConditionAtReturn}">
+        <option th:each="item : ${statuses}"
+        th:value="${item}"
+        th:text="${item}">
+        </option>
+    </select>
+    <br/> <br/>
+
+    <label>Statut:</label>
+    <select th:field="*{status}">
+        <option value="En cours">En cours</option>
+        <option value="Retourné">Retourné</option>
+        <option value="En retard">En retard</option>
+    </select><br/> <br/>
+
+    <button type="submit">Enregistrer</button>
+</form>
+
+</body>
+</html>

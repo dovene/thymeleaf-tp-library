@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${member.memberId} == null ? 'Ajouter un membre' : 'Modifier un membre'"></title>
+</head>
+<body>
+    <h1  th:text="${member.memberId} == null ? 'Ajout d\'un livre' : 'Modification du livre ' + ${member.memberId} ">
+    </h1>
+
+<form th:action="@{/members/save}" th:object="${member}" method="post">
+    <label>ID:</label>
+    <input type="text" th:field="*{memberId}" /><br/>
+    <br/>
+
+    <label>Prénom:</label>
+    <input type="text" th:field="*{firstName}" /><br/>
+    <br/>
+
+    <label>Nom:</label>
+    <input type="text" th:field="*{lastName}" /><br/>
+    <br/>
+
+    <label>Email:</label>
+    <input type="text" th:field="*{email}" /><br/>
+    <br/>
+
+    <label>Date d'inscrption:</label>
+    <input type="date" name="registrationDateStr" th:value="${member.registrationDate}" /><br/>
+    <br/>
+    
+    <label>Status:</label>
+    <select th:field="*{status}">
+        <option value="Actif">Actif</option>
+        <option value="Suspendu">Suspendu</option>
+    </select><br/>
+    <br/>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
