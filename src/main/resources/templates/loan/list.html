@@ -31,16 +31,16 @@
     </thead>
     <tbody>
     <tr th:each="loan : ${loans}">
-        <td th:text="${loan.memberId}"></td>
-        <td th:text="${loan.isbn}"></td>
-        <td th:text="${loan.loanDate}"></td>
-        <td th:text="${loan.dueDate}"></td>
-        <td th:text="${loan.bookConditionAtLoan}"></td>
-        <td th:text="${loan.bookConditionAtReturn}"></td>
+        <td th:text="${loan.memberId}">id</td>
+        <td th:text="${loan.isbn}">isbn</td>
+        <td th:text="${#temporals.format(loan.loanDate, 'dd/MM/yyyy')}">date</td>
+        <td th:text="${#temporals.format(loan.dueDate, 'dd/MM/yyyy')}">date</td>
+        <td th:text="${loan.bookConditionAtLoan}">bon</td>
+        <td th:text="${loan.bookConditionAtReturn}">bon</td>
         <td th:text="${loan.status}"></td>
         <td>
-            <a th:href="@{/loans/edit/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Edit</a> |
-            <a th:href="@{/loans/delete/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Delete</a>
+            <a th:href="@{/loans/edit/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Modifier</a> |
+            <a th:href="@{/loans/delete/{memberId}/{isbn}(memberId=${loan.memberId}, isbn=${loan.isbn})}">Supprimer</a>
         </td>
     </tr>
     </tbody>

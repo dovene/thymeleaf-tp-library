@@ -4,7 +4,7 @@
     <title th:text="${member.memberId} == null ? 'Ajouter un membre' : 'Modifier un membre'"></title>
 </head>
 <body>
-    <h1  th:text="${member.memberId} == null ? 'Ajout d\'un livre' : 'Modification du livre ' + ${member.memberId} ">
+    <h1  th:text="${member.memberId} == null ? 'Ajout d\'un membre' : 'Modification du membre ' + ${member.memberId} ">
     </h1>
 
 <form th:action="@{/members/save}" th:object="${member}" method="post">
@@ -27,7 +27,7 @@
     <label>Date d'inscrption:</label>
     <input type="date" name="registrationDateStr" th:value="${member.registrationDate}" /><br/>
     <br/>
-    
+
     <label>Status:</label>
     <select th:field="*{status}">
         <option value="Actif">Actif</option>
@@ -35,7 +35,7 @@
     </select><br/>
     <br/>
 
-    <button type="submit">Save</button>
+    <button type="submit">Enregistrer</button>
 </form>
 </body>
 </html>

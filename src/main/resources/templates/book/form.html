@@ -4,7 +4,7 @@
     <title th:text="${book.isbn} == null ? 'Ajouter un livre' : 'Modifier un livre'"></title>
 </head>
 <body>
-<h1  th:text="${book.isbn} == null ? 'Ajout d\'un livre' : 'Modification du livre ' + ${product.reference} ">
+<h1  th:text="${book.isbn} == null ? 'Ajout d\'un livre' : 'Modification du livre ' + ${book.isbn} ">
 </h1>
 
 <form th:action="@{/books/save}" th:object="${book}" method="post">

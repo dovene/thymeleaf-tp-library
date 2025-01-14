@@ -29,12 +29,12 @@
     </thead>
     <tbody>
     <tr th:each="member : ${members}">
-        <td th:text="${member.memberId}"></td>
-        <td th:text="${member.firstName}"></td>
-        <td th:text="${member.lastName}"></td>
-        <td th:text="${member.email}"></td>
-        <td th:text="${member.registrationDate}"></td>
-        <td th:text="${member.status}"></td>
+        <td th:text="${member.memberId}">1</td>
+        <td th:text="${member.firstName}">dov</td>
+        <td th:text="${member.lastName}">dov</td>
+        <td th:text="${member.email}">ader@der.com</td>
+        <td th:text="${#temporals.format(member.registrationDate, 'dd/MM/yyyy')}">date</td>
+        <td th:text="${member.status}">actif</td>
         <td>
             <a th:href="@{/members/edit/{id}(id=${member.memberId})}">Modifier</a> |
             <a th:href="@{/members/delete/{id}(id=${member.memberId})}">Supprimer</a>

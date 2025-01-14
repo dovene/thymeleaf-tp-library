@@ -52,7 +52,7 @@ public class LoanService {
     public long countLateLoans() {
         LocalDate now = LocalDate.now();
         return loans.stream()
-                .filter(l -> "En cours".equals(l.getStatus()) && l.getDueDate().isBefore(now))
+                .filter(l -> "En retard".equals(l.getStatus()) && l.getDueDate().isBefore(now))
                 .count();
     }
 }
